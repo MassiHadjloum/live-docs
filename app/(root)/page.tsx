@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import AddDocumentBtn from "@/components/AddDocumentBtn";
+import { DeleteModal } from "@/components/DeleteModal";
 import Header from "@/components/Header";
 import { getDocuments } from "@/lib/actions/room.actoin";
 import { dateConverter } from "@/lib/utils";
@@ -14,7 +15,6 @@ const Home = async () => {
   const clerkUser = await currentUser()
   if (!clerkUser) redirect("/sign-in")
   const documents = await getDocuments(clerkUser.emailAddresses[0].emailAddress)
-console.log("------- ", documents)
   return (
     <main className="home-container">
       <Header className="sticky left-0 top-0">
@@ -43,6 +43,7 @@ console.log("------- ", documents)
                     <p className="text-sm text-blue-100 font-light">Created about {dateConverter(createdAt)} </p>
                   </div>
                 </Link>
+                <DeleteModal roomId={id} />
               </li>
             ))}
           </ul>
