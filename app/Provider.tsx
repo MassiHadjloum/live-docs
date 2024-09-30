@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+
 'use client'
 import Loader from "@/components/Loader"
 import { getClerkUsers, getDocumentUsers } from "@/lib/actions/user.action"
@@ -10,7 +12,6 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
     <LiveblocksProvider authEndpoint={'/api/liveblocks-auth'}
       resolveUsers={async ({ userIds }) => {
         const users = await getClerkUsers(userIds)
-        console.log("--- ", users)
         return users;
       }}
       resolveMentionSuggestions={async ({ text, roomId }) => {
